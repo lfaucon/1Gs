@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+    <h1 id="sentence">Louis is</h1>
+    <h1 id="sentence"><span id="age"></span></h1>
+    <h1 id="sentence">seconds old</h1>
+    <h1 id="sentence">Gigaversary in</h1>
+    <div id="countdown">
+      <div class="unit">
+        <h2 id="days"></h2>
+        <span>DAYS</span>
+      </div>
+      <h2 class="semi">:</h2>
+      <div class="unit">
+        <h2 id="hours"></h2>
+        <span>HOURS</span>
+      </div>
+      <h2 class="semi">:</h2>
+      <div class="unit">
+        <h2 id="minutes"></h2>
+        <span>MIN</span>
+      </div>
+      <h2 class="semi">:</h2>
+      <div class="unit">
+        <h2 id="seconds"></h2>
+        <span>SEC</span>
+      </div>
+    </div>
+  </div>
+  <script>
+      // COUNTDOWN STUFF
+      const target = new Date('Oct 10 1991 10:10:00 GMT+0100 (+01)').setSeconds(1000000000)
+      const birth = new Date('Oct 10 1991 10:10:00 GMT+0100 (+01)')
+      const updateCountdown = function () {
+          const now = new Date()
+          const duration = (target - new Date()) / 1000
+
+          const days = Math.max(0, Math.floor(duration / (24 * 60 * 60)))
+          const hours = Math.max(0, Math.floor(duration % (24 * 60 * 60) / (60 * 60)))
+          const minutes = Math.max(0, Math.floor(duration % (60 * 60) / 60))
+          const seconds = Math.max(0, Math.floor(duration % 60))
+
+          document.getElementById("days").innerText = days
+          document.getElementById("hours").innerText = String(hours).padStart(2, '0')
+          document.getElementById("minutes").innerText = String(minutes).padStart(2, '0')
+          document.getElementById("seconds").innerText = String(seconds).padStart(2, '0')
+          document.getElementById("age").innerText = Math.round(((new Date() - birth)/1000)).toLocaleString()
+      }
+      updateCountdown()
+      setInterval(updateCountdown, 1000)
+  </script>
+</body>
+
+</html>
